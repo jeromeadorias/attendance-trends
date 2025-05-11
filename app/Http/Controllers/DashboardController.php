@@ -14,7 +14,7 @@ class DashboardController extends Controller
         // --- Cards Data ---
 
         // Total number of students
-        $totalStudents = Student::count('id');
+        $totalStudents = Student::count();
 
         // Total number of attendance records
         $attendanceCount = Attendance::count();
