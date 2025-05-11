@@ -6,9 +6,9 @@
 
     <!-- Summary Cards -->
     <div class="row mb-5 g-4">
-        <div class="col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="card shadow border-0 rounded-4 animate__animated animate__zoomIn">
-                <div class="card-body text-center p-4">
+                <div class="card-body text-center p-5">
                     <div class="mb-3">
                         <i class="bi bi-people-fill fs-1 text-primary"></i>
                     </div>
@@ -18,14 +18,30 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="card shadow border-0 rounded-4 animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
-                <div class="card-body text-center p-4">
+                <div class="card-body text-center p-5">
                     <div class="mb-3">
                         <i class="bi bi-journal-check fs-1 text-success"></i>
                     </div>
                     <h6 class="text-muted">Total Attendance Logs</h6>
                     <h2 class="fw-bold text-success">{{ $attendanceCount }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow border-0 rounded-4 animate__animated animate__zoomIn" style="animation-delay: 0.4s;">
+                <div class="card-body p-5">
+                    <h6 class="text-muted text-center mb-3">Attendance Summary by Status</h6>
+                    <ul class="list-group list-group-flush">
+                        @foreach ($attendancePerStatus as $attendance)
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>{{ $attendance->status }}</span>
+                                <span class="fw-bold">{{ number_format($attendance->total) }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
@@ -39,7 +55,7 @@
                     Attendance by Status
                 </div>
                 <div class="card-body">
-                    <canvas id="attendanceStatusChart" height="200"></canvas>
+                    <canvas id="attendanceStatusChart" height="200"></canvas> <!-- Larger chart -->
                 </div>
             </div>
         </div>
@@ -50,7 +66,7 @@
                     Attendance Over Time
                 </div>
                 <div class="card-body">
-                    <canvas id="attendanceTrendChart" height="200"></canvas>
+                    <canvas id="attendanceTrendChart" height="200"></canvas> <!-- Larger chart -->
                 </div>
             </div>
         </div>
