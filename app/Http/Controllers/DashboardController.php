@@ -14,7 +14,7 @@ class DashboardController extends Controller
         // --- Cards Data ---
 
         // Total number of students
-        $totalStudents = Student::count();
+        $totalStudents = Student::count('id');
 
         // Total number of attendance records
         $attendanceCount = Attendance::count();
@@ -23,6 +23,7 @@ class DashboardController extends Controller
         $attendancePerStatus = Attendance::select('status', DB::raw('COUNT(*) as total'))
             ->groupBy('status')
             ->get();
+           
 
         // --- Charts Data ---
 

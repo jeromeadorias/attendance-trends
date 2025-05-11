@@ -63,7 +63,7 @@ class AttendanceSeeder extends Seeder
                 'status' => 'late',
             ],
             [
-                'date' => '2024-05-04',
+                'date' => '2024-06-04',
                 'student_name' => 'Alice Johnson',
                 'course_name' => 'Science',
                 'day_of_week' => 'Wednesday',
@@ -71,7 +71,7 @@ class AttendanceSeeder extends Seeder
                 'status' => 'present',
             ],
             [
-                'date' => '2024-05-04',
+                'date' => '2024-01-04',
                 'student_name' => 'Bob Smith',
                 'course_name' => 'Science',
                 'day_of_week' => 'Wednesday',
@@ -79,7 +79,7 @@ class AttendanceSeeder extends Seeder
                 'status' => 'absent',
             ],
             [
-                'date' => '2024-05-05',
+                'date' => '2024-07-05',
                 'student_name' => 'Charlie Lee',
                 'course_name' => 'Mathematics',
                 'day_of_week' => 'Monday',
@@ -87,7 +87,7 @@ class AttendanceSeeder extends Seeder
                 'status' => 'late',
             ],
             [
-                'date' => '2024-05-06',
+                'date' => '2024-05-10',
                 'student_name' => 'Alice Johnson',
                 'course_name' => 'Mathematics',
                 'day_of_week' => 'Monday',
@@ -97,25 +97,18 @@ class AttendanceSeeder extends Seeder
         ];
 
         foreach ($entries as $entry) {
-            // Ensure the student exists
-            $student = Student::firstOrCreate(['name' => $entry['student_name']]);
-
-            // Ensure the course exists
+            $student = Student::where('name', $entry['student_name'])->first();
             $course = Course::firstOrCreate(['name' => $entry['course_name']]);
-
-            // Ensure the schedule exists
             $schedule = Schedule::firstOrCreate([
                 'course_id' => $course->id,
                 'day_of_week' => $entry['day_of_week'],
-                'start_time' => $entry['time'],
+                'start_time' => $entry['time']
             ]);
 
-            // If any model is missing (highly unlikely due to firstOrCreate), throw an error
             if (!$student || !$course || !$schedule) {
                 throw new \Exception("Missing related data for attendance entry: " . json_encode($entry));
             }
 
-            // Create the attendance record
             Attendance::create([
                 'student_id' => $student->id,
                 'schedule_id' => $schedule->id,
