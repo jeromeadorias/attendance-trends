@@ -55,7 +55,7 @@ class AttendanceSeeder extends Seeder
                 'status' => 'present',
             ],
             [
-                'date' => '2024-05-03',
+                'date' => '2024-05-28',
                 'student_name' => 'Charlie Lee',
                 'course_name' => 'Mathematics',
                 'day_of_week' => 'Monday',
@@ -87,7 +87,7 @@ class AttendanceSeeder extends Seeder
                 'status' => 'late',
             ],
             [
-                'date' => '2024-05-10',
+                'date' => '2024-05-14',
                 'student_name' => 'Alice Johnson',
                 'course_name' => 'Mathematics',
                 'day_of_week' => 'Monday',

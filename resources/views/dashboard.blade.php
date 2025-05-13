@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container py-5">
-    <h1 class="mb-5 text-center fw-bold display-5 animate__animated animate__fadeIn animate__delay-1s">📊 Attendance Trends Dashboard</h1>
+    <h1 class="mb-5 text-center fw-bold display-5"> Attendance Trends Dashboard</h1>
 
     <!-- Summary Cards -->
     <div class="row mb-5 g-4">
         <div class="col-lg-4 col-md-6">
-            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__flipInX animate__delay-0.2s">
+            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__bounceIn animate__delay-0s">
                 <div class="card-body text-center p-5">
                     <div class="mb-3">
                         <i class="bi bi-person-circle fs-1 text-primary"></i>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-lg-4 col-md-6">
-            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__flipInX animate__delay-0.4s">
+            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__bounceIn animate__delay-1s">
                 <div class="card-body text-center p-5">
                     <div class="mb-3">
                         <i class="bi bi-check-circle-fill fs-1 text-success"></i>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-lg-4 col-md-6">
-            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__flipInX animate__delay-0.6s">
+            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__bounceIn animate__delay-2s">
                 <div class="card-body p-5">
                     <h6 class="text-muted text-center mb-3">Attendance Summary by Status</h6>
                     <ul class="list-group list-group-flush">
@@ -42,7 +42,7 @@
                             </li>
                         @endforeach
                     </ul>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
@@ -50,23 +50,23 @@
     <!-- Charts -->
     <div class="row g-4">
         <div class="col-lg-6">
-            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__fadeInUp animate__delay-0.8s">
+            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__fadeInLeft">
                 <div class="card-header bg-light text-center fw-bold fs-5 py-3">
                     Attendance by Status
                 </div>
                 <div class="card-body">
-                    <canvas id="attendanceStatusChart" height="200"></canvas> <!-- Larger chart -->
+                    <canvas id="attendanceStatusChart" height="200"></canvas>
                 </div>
             </div>
         </div>
 
         <div class="col-lg-6">
-            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__fadeInUp animate__delay-1s">
+            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__fadeInRight">
                 <div class="card-header bg-light text-center fw-bold fs-5 py-3">
                     Attendance Over Time
                 </div>
                 <div class="card-body">
-                    <canvas id="attendanceTrendChart" height="200"></canvas> <!-- Larger chart -->
+                    <canvas id="attendanceTrendChart" height="200"></canvas>
                 </div>
             </div>
         </div>
@@ -120,8 +120,8 @@ new Chart(document.getElementById('attendanceTrendChart'), {
         datasets: [{
             label: 'Attendance Count',
             data: {!! json_encode($attendancePerDay->pluck('total')) !!},
-            backgroundColor: 'rgba(173, 216, 230, 0.2)',  // Light blue
-            borderColor: 'rgba(34, 139, 34, 1)',          // Dark green
+            backgroundColor: 'rgba(173, 216, 230, 0.2)',
+            borderColor: 'rgba(34, 139, 34, 1)',
             pointBackgroundColor: 'rgba(50, 205, 50, 1)',
             fill: true,
             tension: 0.4,
